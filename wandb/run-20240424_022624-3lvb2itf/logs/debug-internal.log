@@ -1,0 +1,113 @@
+2024-04-24 02:26:24,585 INFO    StreamThr :35774 [internal.py:wandb_internal():86] W&B internal server running at pid: 35774, started at: 2024-04-24 02:26:24.585440
+2024-04-24 02:26:24,586 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status
+2024-04-24 02:26:24,588 INFO    WriterThread:35774 [datastore.py:open_for_write():87] open: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/run-3lvb2itf.wandb
+2024-04-24 02:26:24,589 DEBUG   SenderThread:35774 [sender.py:send():379] send: header
+2024-04-24 02:26:24,617 DEBUG   SenderThread:35774 [sender.py:send():379] send: run
+2024-04-24 02:26:24,619 INFO    Thread-38 :35774 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022617-h12d5duz/files/output.log
+2024-04-24 02:26:25,485 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:25,610 INFO    SenderThread:35774 [dir_watcher.py:__init__():211] watching files in: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/files
+2024-04-24 02:26:25,610 INFO    SenderThread:35774 [sender.py:_start_run_threads():1124] run started: 3lvb2itf with start time 1713896784.585519
+2024-04-24 02:26:25,618 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: check_version
+2024-04-24 02:26:25,618 DEBUG   SenderThread:35774 [sender.py:send_request():406] send_request: check_version
+2024-04-24 02:26:26,122 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: run_start
+2024-04-24 02:26:26,123 DEBUG   HandlerThread:35774 [system_info.py:__init__():26] System info init
+2024-04-24 02:26:26,123 DEBUG   HandlerThread:35774 [system_info.py:__init__():41] System info init done
+2024-04-24 02:26:26,123 INFO    HandlerThread:35774 [system_monitor.py:start():194] Starting system monitor
+2024-04-24 02:26:26,123 INFO    SystemMonitor:35774 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-04-24 02:26:26,123 INFO    HandlerThread:35774 [system_monitor.py:probe():214] Collecting system info
+2024-04-24 02:26:26,125 INFO    SystemMonitor:35774 [interfaces.py:start():190] Started cpu monitoring
+2024-04-24 02:26:26,125 DEBUG   HandlerThread:35774 [system_info.py:probe():150] Probing system
+2024-04-24 02:26:26,125 INFO    SystemMonitor:35774 [interfaces.py:start():190] Started disk monitoring
+2024-04-24 02:26:26,126 INFO    SystemMonitor:35774 [interfaces.py:start():190] Started gpuapple monitoring
+2024-04-24 02:26:26,129 INFO    SystemMonitor:35774 [interfaces.py:start():190] Started memory monitoring
+2024-04-24 02:26:26,130 INFO    SystemMonitor:35774 [interfaces.py:start():190] Started network monitoring
+2024-04-24 02:26:26,131 DEBUG   HandlerThread:35774 [system_info.py:_probe_git():135] Probing git
+2024-04-24 02:26:26,156 DEBUG   HandlerThread:35774 [system_info.py:_probe_git():143] Probing git done
+2024-04-24 02:26:26,157 DEBUG   HandlerThread:35774 [system_info.py:probe():198] Probing system done
+2024-04-24 02:26:26,157 DEBUG   HandlerThread:35774 [system_monitor.py:probe():223] {'os': 'macOS-14.3.1-arm64-arm-64bit', 'python': '3.10.14', 'heartbeatAt': '2024-04-23T18:26:26.126171', 'startedAt': '2024-04-23T18:26:24.582249', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '<python with no main file>', 'codePathLocal': None, 'git': {'remote': 'https://github.com/mykcs/MedSAM_lite-0424.git', 'commit': '22e0a75d061f017b8fc49f163ca951bca0b8c1df'}, 'email': 'mykcs01@163.com', 'root': '/Users/myk/PyPjcts/MedSAM_lite-0424', 'host': 'miyuki-M2Max', 'username': 'myk', 'executable': '/Users/myk/anaconda3/envs/env-MedSAM-0422/bin/python', 'cpu_count': 12, 'cpu_count_logical': 12, 'cpu_freq': {'current': 3504, 'min': 702, 'max': 3504}, 'cpu_freq_per_core': [{'current': 3504, 'min': 702, 'max': 3504}], 'disk': {'/': {'total': 926.3517189025879, 'used': 13.360553741455078}}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 32.0}}
+2024-04-24 02:26:26,157 INFO    HandlerThread:35774 [system_monitor.py:probe():224] Finished collecting system info
+2024-04-24 02:26:26,157 INFO    HandlerThread:35774 [system_monitor.py:probe():227] Publishing system info
+2024-04-24 02:26:26,157 DEBUG   HandlerThread:35774 [system_info.py:_save_conda():207] Saving list of conda packages installed into the current environment
+2024-04-24 02:26:26,616 INFO    Thread-51 :35774 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/files/conda-environment.yaml
+2024-04-24 02:26:28,078 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:28,113 DEBUG   HandlerThread:35774 [system_info.py:_save_conda():222] Saving conda packages done
+2024-04-24 02:26:28,113 INFO    HandlerThread:35774 [system_monitor.py:probe():229] Finished publishing system info
+2024-04-24 02:26:28,114 DEBUG   SenderThread:35774 [sender.py:send():379] send: files
+2024-04-24 02:26:28,114 INFO    SenderThread:35774 [sender.py:_save_file():1390] saving file wandb-metadata.json with policy now
+2024-04-24 02:26:28,166 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: python_packages
+2024-04-24 02:26:28,166 DEBUG   SenderThread:35774 [sender.py:send_request():406] send_request: python_packages
+2024-04-24 02:26:28,167 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-24 02:26:28,167 DEBUG   SenderThread:35774 [sender.py:send_request():406] send_request: stop_status
+2024-04-24 02:26:28,167 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-24 02:26:28,620 INFO    Thread-51 :35774 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/files/conda-environment.yaml
+2024-04-24 02:26:28,621 INFO    Thread-51 :35774 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/files/wandb-metadata.json
+2024-04-24 02:26:28,621 INFO    Thread-51 :35774 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/files/requirements.txt
+2024-04-24 02:26:28,792 DEBUG   SenderThread:35774 [sender.py:send():379] send: telemetry
+2024-04-24 02:26:28,809 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-24 02:26:28,809 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-24 02:26:28,809 DEBUG   SenderThread:35774 [sender.py:send_request():406] send_request: stop_status
+2024-04-24 02:26:29,013 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:29,482 INFO    wandb-upload_0:35774 [upload_job.py:push():131] Uploaded file /var/folders/np/lwj6dcgj7vgbzkyrpwn082pr0000gn/T/tmpn7wop2rbwandb/ldthvi7o-wandb-metadata.json
+2024-04-24 02:26:29,626 INFO    Thread-51 :35774 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/files/output.log
+2024-04-24 02:26:29,798 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:31,142 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:31,628 INFO    StreamThr :35774 [internal.py:wandb_internal():86] W&B internal server running at pid: 35774, started at: 2024-04-24 02:26:31.627490
+2024-04-24 02:26:31,629 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status
+2024-04-24 02:26:31,630 INFO    WriterThread:35774 [datastore.py:open_for_write():87] open: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022631-a347vpuc/run-a347vpuc.wandb
+2024-04-24 02:26:31,631 DEBUG   SenderThread:35774 [sender.py:send():379] send: header
+2024-04-24 02:26:31,634 INFO    Thread-51 :35774 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022624-3lvb2itf/files/output.log
+2024-04-24 02:26:31,661 DEBUG   SenderThread:35774 [sender.py:send():379] send: run
+2024-04-24 02:26:32,193 ERROR   gpuapple  :35774 [gpu_apple.py:sample():81] GPU stats error: Command '['/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/bin/apple_gpu_stats', '--json']' died with <Signals.SIGINT: 2>.
+Traceback (most recent call last):
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/sdk/internal/system/assets/gpu_apple.py", line 60, in sample
+    subprocess.check_output(command, universal_newlines=True)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/bin/apple_gpu_stats', '--json']' died with <Signals.SIGINT: 2>.
+2024-04-24 02:26:32,193 ERROR   gpuapple  :35774 [gpu_apple.py:sample():81] GPU stats error: Command '['/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/bin/apple_gpu_stats', '--json']' died with <Signals.SIGINT: 2>.
+Traceback (most recent call last):
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/sdk/internal/system/assets/gpu_apple.py", line 60, in sample
+    subprocess.check_output(command, universal_newlines=True)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/bin/apple_gpu_stats', '--json']' died with <Signals.SIGINT: 2>.
+2024-04-24 02:26:32,193 ERROR   gpuapple  :35774 [gpu_apple.py:sample():81] GPU stats error: Command '['/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/bin/apple_gpu_stats', '--json']' died with <Signals.SIGINT: 2>.
+Traceback (most recent call last):
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/sdk/internal/system/assets/gpu_apple.py", line 60, in sample
+    subprocess.check_output(command, universal_newlines=True)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/wandb/bin/apple_gpu_stats', '--json']' died with <Signals.SIGINT: 2>.
+2024-04-24 02:26:33,094 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:33,878 INFO    cpu       :35774 [interfaces.py:monitor():140] Process cpu has exited.
+2024-04-24 02:26:33,881 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-04-24 02:26:33,881 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-04-24 02:26:33,881 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-04-24 02:26:33,882 DEBUG   SenderThread:35774 [sender.py:send():379] send: telemetry
+2024-04-24 02:26:33,882 DEBUG   SenderThread:35774 [sender.py:send():379] send: stats
+2024-04-24 02:26:34,038 INFO    Thread-12 :35774 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022602-m4nhlspc/files/output.log
+2024-04-24 02:26:34,140 INFO    cpu       :35774 [interfaces.py:monitor():140] Process cpu has exited.
+2024-04-24 02:26:34,142 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-04-24 02:26:34,142 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-04-24 02:26:34,142 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-04-24 02:26:34,143 DEBUG   SenderThread:35774 [sender.py:send():379] send: telemetry
+2024-04-24 02:26:34,143 DEBUG   SenderThread:35774 [sender.py:send():379] send: stats
+2024-04-24 02:26:34,220 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:35,043 INFO    Thread-12 :35774 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022602-m4nhlspc/files/config.yaml
+2024-04-24 02:26:35,148 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report
+2024-04-24 02:26:35,172 INFO    memory    :35774 [interfaces.py:monitor():140] Process proc.memory.rssMB has exited.
+2024-04-24 02:26:35,172 INFO    cpu       :35774 [interfaces.py:monitor():140] Process cpu has exited.
+2024-04-24 02:26:35,172 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-04-24 02:26:35,173 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-04-24 02:26:35,173 DEBUG   SystemMonitor:35774 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-04-24 02:26:35,173 DEBUG   SenderThread:35774 [sender.py:send():379] send: telemetry
+2024-04-24 02:26:35,173 DEBUG   SenderThread:35774 [sender.py:send():379] send: stats
+2024-04-24 02:26:35,303 INFO    SenderThread:35774 [dir_watcher.py:__init__():211] watching files in: /Users/myk/PyPjcts/MedSAM_lite-0424/wandb/run-20240424_022631-a347vpuc/files
+2024-04-24 02:26:35,303 INFO    SenderThread:35774 [sender.py:_start_run_threads():1124] run started: a347vpuc with start time 1713896791.62708
+2024-04-24 02:26:36,891 DEBUG   HandlerThread:35774 [handler.py:handle_request():146] handle_request: status_report

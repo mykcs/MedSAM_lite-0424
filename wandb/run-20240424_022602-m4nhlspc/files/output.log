@@ -1,0 +1,29 @@
+
+  0%|          | 0/906 [00:00<?, ?it/s]
+Finetuning with pretrained weights lite_medsam.pth
+  0%|          | 0/906 [00:25<?, ?it/s]
+Traceback (most recent call last):
+  File "/Users/myk/PyPjcts/MedSAM_lite-0424/train_mps-1.py", line 530, in <module>
+    main()
+  File "/Users/myk/PyPjcts/MedSAM_lite-0424/train_mps-1.py", line 463, in main
+    for step, batch in enumerate(pbar):
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 439, in __iter__
+    return self._get_iterator()
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 387, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1040, in __init__
+    w.start()
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/multiprocessing/context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/multiprocessing/context.py", line 288, in _Popen
+    return Popen(process_obj)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    super().__init__(process_obj)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/Users/myk/anaconda3/envs/env-MedSAM-0422/lib/python3.10/multiprocessing/popen_spawn_posix.py", line 62, in _launch
+    f.write(fp.getbuffer())

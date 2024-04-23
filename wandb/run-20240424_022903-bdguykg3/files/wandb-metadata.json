@@ -1,0 +1,48 @@
+{
+    "os": "macOS-14.3.1-arm64-arm-64bit",
+    "python": "3.10.14",
+    "heartbeatAt": "2024-04-23T18:29:05.241627",
+    "startedAt": "2024-04-23T18:29:03.583777",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "<python with no main file>",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/mykcs/MedSAM_lite-0424.git",
+        "commit": "22e0a75d061f017b8fc49f163ca951bca0b8c1df"
+    },
+    "email": "mykcs01@163.com",
+    "root": "/Users/myk/PyPjcts/MedSAM_lite-0424",
+    "host": "miyuki-M2Max",
+    "username": "myk",
+    "executable": "/Users/myk/anaconda3/envs/env-MedSAM-0422/bin/python",
+    "cpu_count": 12,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 3504,
+        "min": 702,
+        "max": 3504
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3504,
+            "min": 702,
+            "max": 3504
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 926.3517189025879,
+            "used": 13.360553741455078
+        }
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 32.0
+    }
+}

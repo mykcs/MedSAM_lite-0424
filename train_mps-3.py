@@ -92,8 +92,6 @@ parser.add_argument(
 )  # default=False
 args = parser.parse_args()
 
-
-
 run_id = datetime.now().strftime("%Y%m%d-%H%M")
 model_save_path = join(args.work_dir, args.task_name + "-" + run_id)
 
@@ -340,125 +338,12 @@ class MedSAM_Lite(nn.Module):
 
 
 # %%
-# medsam_lite_image_encoder = TinyViT(
-medsam_lite_image_encoder = TinyViT(
-    img_size=256,
-    in_chans=3,
-    embed_dims=[
-        64,  ## (64, 256, 256)
-        128,  ## (128, 128, 128)
-        160,  ## (160, 64, 64)
-        320  ## (320, 64, 64)
-    ],
-    depths=[2, 2, 6, 2],
-    num_heads=[2, 4, 5, 10],
-    window_sizes=[7, 7, 14, 7],
-    mlp_ratio=4.,
-    drop_rate=0.,
-    drop_path_rate=0.0,
-    use_checkpoint=False,
-    mbconv_expand_ratio=4.0,
-    local_conv_size=3,
-    layer_lr_decay=0.8
-)
-
-medsam_lite_prompt_encoder = PromptEncoder(
-    embed_dim=256,
-    image_embedding_size=(64, 64),
-    input_image_size=(256, 256),
-    mask_in_chans=16
-)
-
-medsam_lite_mask_decoder = MaskDecoder(
-    num_multimask_outputs=3,
-    transformer=TwoWayTransformer(
-        depth=2,
-        embedding_dim=256,
-        mlp_dim=2048,
-        num_heads=8,
-    ),
-    transformer_dim=256,
-    iou_head_depth=3,
-    iou_head_hidden_dim=256,
-)
-
-medsam_lite_model = MedSAM_Lite(
-    image_encoder=medsam_lite_image_encoder,
-    mask_decoder=medsam_lite_mask_decoder,
-    prompt_encoder=medsam_lite_prompt_encoder
-)
-
-if medsam_lite_checkpoint is not None:
-    if isfile(medsam_lite_checkpoint):
-        print(f"Finetuning with pretrained weights {medsam_lite_checkpoint}")
-        medsam_lite_ckpt = torch.load(
-            medsam_lite_checkpoint,
-            map_location="cpu"
-        )
-        medsam_lite_model.load_state_dict(medsam_lite_ckpt, strict=True)
-    else:
-        print(f"Pretained weights {medsam_lite_checkpoint} not found, training from scratch")
-
-medsam_lite_model = medsam_lite_model.to(device)
-medsam_lite_model.train()
-
-# %%
-print(f"MedSAM Lite size: {sum(p.numel() for p in medsam_lite_model.parameters())}")
-# %%
-optimizer = optim.AdamW(
-    medsam_lite_model.parameters(),
-    lr=lr,
-    betas=(0.9, 0.999),
-    eps=1e-08,
-    weight_decay=weight_decay,
-)
-lr_scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-    optimizer,
-    mode='min',
-    factor=0.9,
-    patience=5,
-    cooldown=0
-)
-seg_loss = monai.losses.DiceLoss(sigmoid=True, squared_pred=True, reduction='mean')
-ce_loss = nn.BCEWithLogitsLoss(reduction='mean')
-iou_loss = nn.MSELoss(reduction='mean')
-# %%
-train_dataset = NpyDataset(data_root=data_root, data_aug=True)
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=True)
-
-if checkpoint and isfile(checkpoint):
-    print(f"Resuming from checkpoint {checkpoint}")
-    checkpoint = torch.load(checkpoint)
-    medsam_lite_model.load_state_dict(checkpoint["model"], strict=True)
-    optimizer.load_state_dict(checkpoint["optimizer"])
-    start_epoch = checkpoint["epoch"]
-    best_loss = checkpoint["loss"]
-    print(f"Loaded checkpoint from epoch {start_epoch}")
-else:
-    start_epoch = 0
-    best_loss = 1e10
-
-
-# %%
 
 
 def main():
-    import wandb
-
-    wandb.login()
-    wandb.init(
-        project=args.task_name,
-        name="run-0424-2",
-        config={
-            "lr": args.lr,
-            "batch_size": args.batch_size,
-            "data_path": args.data_root,
-            "epochs": args.num_epochs,
-        },
-    )
-
     train_losses = []
-    for epoch in range(start_epoch + 1, num_epochs):
+    num_epochs = 10
+    for epoch in range(start_epoch + 1, num_epochs + 1):
         epoch_loss = [1e10 for _ in range(len(train_loader))]
         epoch_start_time = time()
         pbar = tqdm(train_loader)
@@ -482,7 +367,6 @@ def main():
             optimizer.step()
             optimizer.zero_grad()
             # if args.use_wandb:
-            # """
             wandb.log({"seg_loss_weight": seg_loss_weight})
             wandb.log({"l_seg": l_seg})
             wandb.log({"ce_loss_weight": ce_loss_weight})
@@ -496,14 +380,15 @@ def main():
             wandb.log({"loss": loss})
 
             wandb.log({"epoch_loss[step]": epoch_loss[step]})
-            
+
             wandb.log({"loss.item()": loss.item()})
-            # """
+
             pbar.set_description(
                 f"Epoch {epoch} at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, loss: {loss.item():.4f}")
 
         epoch_end_time = time()
         epoch_loss_reduced = sum(epoch_loss) / len(epoch_loss)
+        wandb.log({"epoch_loss": epoch_loss_reduced})
         train_losses.append(epoch_loss_reduced)
         lr_scheduler.step(epoch_loss_reduced)
         model_weights = medsam_lite_model.state_dict()
@@ -530,6 +415,121 @@ def main():
         plt.savefig(join(model_save_path, args.task_name, work_dir, "train_loss.png"))
         plt.close()
 
+    wandb.finish()
+
 
 if __name__ == "__main__":
+    import wandb
+
+    wandb.login()
+    wandb.init(
+        project=args.task_name,
+        name="run-0424-3",
+        config={
+            "lr": args.lr,
+            "batch_size": args.batch_size,
+            "data_path": args.data_root,
+            "epochs": args.num_epochs,
+        },
+    )
+    # %%
+    # medsam_lite_image_encoder = TinyViT(
+    medsam_lite_image_encoder = TinyViT(
+        img_size=256,
+        in_chans=3,
+        embed_dims=[
+            64,  ## (64, 256, 256)
+            128,  ## (128, 128, 128)
+            160,  ## (160, 64, 64)
+            320  ## (320, 64, 64)
+        ],
+        depths=[2, 2, 6, 2],
+        num_heads=[2, 4, 5, 10],
+        window_sizes=[7, 7, 14, 7],
+        mlp_ratio=4.,
+        drop_rate=0.,
+        drop_path_rate=0.0,
+        use_checkpoint=False,
+        mbconv_expand_ratio=4.0,
+        local_conv_size=3,
+        layer_lr_decay=0.8
+    )
+
+    medsam_lite_prompt_encoder = PromptEncoder(
+        embed_dim=256,
+        image_embedding_size=(64, 64),
+        input_image_size=(256, 256),
+        mask_in_chans=16
+    )
+
+    medsam_lite_mask_decoder = MaskDecoder(
+        num_multimask_outputs=3,
+        transformer=TwoWayTransformer(
+            depth=2,
+            embedding_dim=256,
+            mlp_dim=2048,
+            num_heads=8,
+        ),
+        transformer_dim=256,
+        iou_head_depth=3,
+        iou_head_hidden_dim=256,
+    )
+
+    medsam_lite_model = MedSAM_Lite(
+        image_encoder=medsam_lite_image_encoder,
+        mask_decoder=medsam_lite_mask_decoder,
+        prompt_encoder=medsam_lite_prompt_encoder
+    )
+
+    if medsam_lite_checkpoint is not None:
+        if isfile(medsam_lite_checkpoint):
+            print(f"Finetuning with pretrained weights {medsam_lite_checkpoint}")
+            medsam_lite_ckpt = torch.load(
+                medsam_lite_checkpoint,
+                map_location="cpu"
+            )
+            medsam_lite_model.load_state_dict(medsam_lite_ckpt, strict=True)
+        else:
+            print(f"Pretained weights {medsam_lite_checkpoint} not found, training from scratch")
+
+    medsam_lite_model = medsam_lite_model.to(device)
+    medsam_lite_model.train()
+
+    # %%
+    print(f"MedSAM Lite size: {sum(p.numel() for p in medsam_lite_model.parameters())}")
+    # %%
+    optimizer = optim.AdamW(
+        medsam_lite_model.parameters(),
+        lr=lr,
+        betas=(0.9, 0.999),
+        eps=1e-08,
+        weight_decay=weight_decay,
+    )
+    lr_scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer,
+        mode='min',
+        factor=0.9,
+        patience=5,
+        cooldown=0
+    )
+    seg_loss = monai.losses.DiceLoss(sigmoid=True, squared_pred=True, reduction='mean')
+    ce_loss = nn.BCEWithLogitsLoss(reduction='mean')
+    iou_loss = nn.MSELoss(reduction='mean')
+    # %%
+    train_dataset = NpyDataset(data_root=data_root, data_aug=True)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers,
+                              pin_memory=True)
+
+    if checkpoint and isfile(checkpoint):
+        print(f"Resuming from checkpoint {checkpoint}")
+        checkpoint = torch.load(checkpoint)
+        medsam_lite_model.load_state_dict(checkpoint["model"], strict=True)
+        optimizer.load_state_dict(checkpoint["optimizer"])
+        start_epoch = checkpoint["epoch"]
+        best_loss = checkpoint["loss"]
+        print(f"Loaded checkpoint from epoch {start_epoch}")
+    else:
+        start_epoch = 0
+        best_loss = 1e10
+
     main()
