@@ -1,5 +1,7 @@
 # LiteMedSAM
 
+2024 04245 ref https://github.com/bowang-lab/MedSAM/tree/LiteMedSAM
+
 A lightweight version of MedSAM for fast training and inference. The model was trained with the following two states:
 
 - Stage 1. Distill a lightweight image encoder `TinyViT` from the MedSAM image encoder `ViT` by imposing the image embedding outputs to be the same
