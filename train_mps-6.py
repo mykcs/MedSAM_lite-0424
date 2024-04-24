@@ -152,43 +152,6 @@ class NpyDataset(Dataset):
         return image_padded
 
 
-# %% sanity test of dataset class
-if do_sancheck:
-    tr_dataset = NpyDataset(data_root, data_aug=True)
-    tr_dataloader = DataLoader(tr_dataset, batch_size=8, shuffle=True)
-    for step, batch in enumerate(tr_dataloader):
-        # show the example
-        _, axs = plt.subplots(1, 2, figsize=(10, 10))
-        idx = random.randint(0, 4)
-
-        image = batch["image"]
-        gt = batch["gt2D"]
-        bboxes = batch["bboxes"]
-        names_temp = batch["image_name"]
-
-        axs[0].imshow(image[idx].cpu().permute(1, 2, 0).numpy())
-        show_mask(gt[idx].cpu().squeeze().numpy(), axs[0])
-        show_box(bboxes[idx].numpy().squeeze(), axs[0])
-        axs[0].axis('off')
-        # set title
-        axs[0].set_title(names_temp[idx])
-        idx = random.randint(4, 7)
-        axs[1].imshow(image[idx].cpu().permute(1, 2, 0).numpy())
-        show_mask(gt[idx].cpu().squeeze().numpy(), axs[1])
-        show_box(bboxes[idx].numpy().squeeze(), axs[1])
-        axs[1].axis('off')
-        # set title
-        axs[1].set_title(names_temp[idx])
-        plt.subplots_adjust(wspace=0.01, hspace=0)
-        plt.savefig(
-            join(work_dir, 'medsam_lite-train_bbox_prompt_sanitycheck_DA.png'),
-            bbox_inches='tight',
-            dpi=300
-        )
-        plt.close()
-        break
-
-
 # %%
 class MedSAM_Lite(nn.Module):
     def __init__(self,
@@ -353,6 +316,42 @@ def main():
     os.environ["MKL_NUM_THREADS"] = "6"  # export MKL_NUM_THREADS=6
     os.environ["VECLIB_MAXIMUM_THREADS"] = "4"  # export VECLIB_MAXIMUM_THREADS=4
     os.environ["NUMEXPR_NUM_THREADS"] = "6"  # export NUMEXPR_NUM_THREADS=6
+
+    # %% sanity test of dataset class
+    if do_sancheck:
+        tr_dataset = NpyDataset(data_root, data_aug=True)
+        tr_dataloader = DataLoader(tr_dataset, batch_size=8, shuffle=True)
+        for step, batch in enumerate(tr_dataloader):
+            # show the example
+            _, axs = plt.subplots(1, 2, figsize=(10, 10))
+            idx = random.randint(0, 4)
+
+            image = batch["image"]
+            gt = batch["gt2D"]
+            bboxes = batch["bboxes"]
+            names_temp = batch["image_name"]
+
+            axs[0].imshow(image[idx].cpu().permute(1, 2, 0).numpy())
+            show_mask(gt[idx].cpu().squeeze().numpy(), axs[0])
+            show_box(bboxes[idx].numpy().squeeze(), axs[0])
+            axs[0].axis('off')
+            # set title
+            axs[0].set_title(names_temp[idx])
+            idx = random.randint(4, 7)
+            axs[1].imshow(image[idx].cpu().permute(1, 2, 0).numpy())
+            show_mask(gt[idx].cpu().squeeze().numpy(), axs[1])
+            show_box(bboxes[idx].numpy().squeeze(), axs[1])
+            axs[1].axis('off')
+            # set title
+            axs[1].set_title(names_temp[idx])
+            plt.subplots_adjust(wspace=0.01, hspace=0)
+            plt.savefig(
+                join(work_dir, 'medsam_lite-train_bbox_prompt_sanitycheck_DA.png'),
+                bbox_inches='tight',
+                dpi=300
+            )
+            plt.close()
+            break
 
     # %%
     # medsam_lite_image_encoder = TinyViT(
