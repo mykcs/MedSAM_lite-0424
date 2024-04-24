@@ -1,6 +1,6 @@
 # LiteMedSAM
 
-2024 04245 ref https://github.com/bowang-lab/MedSAM/tree/LiteMedSAM
+2024 0424 ref https://github.com/bowang-lab/MedSAM/tree/LiteMedSAM
 
 A lightweight version of MedSAM for fast training and inference. The model was trained with the following two states:
 
