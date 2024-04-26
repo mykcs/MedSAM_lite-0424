@@ -278,7 +278,7 @@ def main():
     wandb.login()
     wandb.init(
         project=args.task_name,
-        name="run-6",
+        name="run-7",
         config={
             "lr": args.lr,
             "batch_size": args.batch_size,
