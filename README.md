@@ -2,6 +2,10 @@
 
 2024 0424 ref https://github.com/bowang-lab/MedSAM/tree/LiteMedSAM
 
+0427 暂时搁置，处理行政事务，看完manba，再回看sam
+
+---
+
 A lightweight version of MedSAM for fast training and inference. The model was trained with the following two states:
 
 - Stage 1. Distill a lightweight image encoder `TinyViT` from the MedSAM image encoder `ViT` by imposing the image embedding outputs to be the same
